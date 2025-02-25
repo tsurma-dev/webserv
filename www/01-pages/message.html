@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Two Files</title>
+</head>
+<body>
+    <h1>Upload Two Files</h1>
+
+    <!-- Form for uploading files -->
+    <form id="file-upload-form" action="/upload" method="POST" enctype="multipart/form-data">
+        <!-- Input for first file -->
+        <label for="file1">Select File 1:</label>
+        <input type="file" id="file1" name="file1" required>
+        <br><br>
+
+        <!-- Input for second file -->
+        <label for="file2">Select File 2:</label>
+        <input type="file" id="file2" name="file2" required>
+        <br><br>
+
+        <!-- Submit button -->
+        <button type="submit">Upload Files</button>
+    </form>
+</body>
+</html>

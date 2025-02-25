@@ -1,17 +1,18 @@
 #pragma once
 
 #include "webserv.hpp"
+#include "Response.hpp"
 
 struct Request {
 
-  std::string type;
+  unsigned char type;
+  bool was_routed;
+  bool is_file_path;
+  std::size_t header_length;
+  std::size_t content_length;
   std::string start_line;
-  size_t header_length;
-  size_t content_length;
-  std::map<std::string, std::string> header_map;
   std::string body;
-  std::string response;
-
+  std::string request_path;
+  Response response;
+  std::map<std::string, std::string> header_map;
 };
-
-

@@ -1,7 +1,5 @@
 #include "../includes/ParseUtils.hpp"
 
-// Helper functions
-
 bool isFileExecutable(const std::string &path)
 {
 	struct stat fileInfo;
@@ -377,9 +375,14 @@ bool parseAutoIndex(const std::string &str)
 
 std::string parseServerName(std::string &str)
 {
-
+	if (str[str.size() - 1] != ';')
+	{
+		std::cerr << "Error: Missing semicolon at the end of autoindex directive" << std::endl;
+		exit(1);
+	}
 	str = trim(str);
-	std::istringstream stream(str);
+	std::string trimmedStr = str.substr(0, str.size() - 1);
+	std::istringstream stream(trimmedStr);
 	std::string directive, serverName;
 	stream >> directive;
 	if (directive != "server_name")
@@ -583,12 +586,6 @@ std::string parseIndex(const std::string &str)
 	if (!(stream >> index) || index.empty())
 	{
 		std::cerr << "Error: Missing file path in index directive" << std::endl;
-		exit(1);
-	}
-
-	if (!fileExistandHTML(index))
-	{
-		std::cerr << "Error: Index file does not exist or is not a valid HTML file: " << index << std::endl;
 		exit(1);
 	}
 
